@@ -1,4 +1,4 @@
-<p align="center"><img src="" width="200" alt="SkyStorm Logo"></p>
+<p align="center"><img src="https://github.com/Tinx242/SkyStorm/blob/master/resources/img/SkyStorm.png" width="200" alt="SkyStorm Logo"></p>
 
 # SkyStorm
 
