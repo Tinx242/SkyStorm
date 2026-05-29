@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //$posts = Post::all();
-
-        return view('posts.index',[
-            'posts' => Post::where('user_id', auth() -> user()->id)->get()
+        return view('users.index', [
+            'users' => User::orderBy('name')
+                            ->where('id', '!=', auth()->user()->id)
+                            ->get()
         ]);
     }
 
@@ -25,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -33,19 +32,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Post ;
-        //dd($request -> all());
-        $post -> user_id = auth() -> user() -> id;
-        $post -> content = $request -> input('content');
-        $post -> save();
-
-        return redirect() -> route('posts.index');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(string $id)
     {
         //
     }
@@ -53,7 +46,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(string $id)
     {
         //
     }
@@ -61,7 +54,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -69,9 +62,8 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(string $id)
     {
         //
     }
-
 }

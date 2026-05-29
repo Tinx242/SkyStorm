@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
 {
-    /**
+    /**n
      * Run the database seeds.
      */
     public function run(): void
