@@ -19,6 +19,12 @@ class UserController extends Controller
         ]);
     }
 
+    public function followings()
+    {
+        $followings = auth()->user()->followings()->get();
+        return view('users.followings', compact('followings'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

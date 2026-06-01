@@ -15,8 +15,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('posts',PostController::class) -> middleware('auth');
-Route::post('/users/follow',[FollowController::class, 'follow'])-> name('users.follow')->middleware('auth');
-Route::delete('/users/follow',[FollowController::class, 'unfollow'])-> name('users.unfollow')->middleware('auth');
+
+Route::get('/users/followings', [UserController::class, 'followings'])->name('users.followings')->middleware('auth');
+Route::post('/users/follow', [FollowController::class, 'follow'])->name('users.follow')->middleware('auth');
+Route::delete('/users/follow', [FollowController::class, 'unfollow'])->name('users.unfollow')->middleware('auth');
+
+Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('notes',NoteController::class);
 Route::resource('users',UserController::class)-> middleware('auth');
 

@@ -58,17 +58,21 @@ class User extends Authenticatable
     /**
      * The roles that belong to the user.
      */
-    public function followed(): BelongsToMany
+    public function followings(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(
+            User::class, 'follows', 'follower_id', 'following_id'
+        );
     }
 
     /**
      * The users that belong to the role.
      */
-    public function follower(): BelongsToMany
+    public function followers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(
+            User::class, 'follows', 'following_id', 'follower_id'
+        );
     }
 
 

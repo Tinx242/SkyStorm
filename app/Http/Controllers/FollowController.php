@@ -12,10 +12,9 @@ class FollowController extends Controller
             'following_id' => 'required|integer|exists:users,id',
         ]);
 
-        //auth()->user()->follower()->attach($data['following_id']);
+        auth()->user()->followings()->attach($data['following_id']); // décommenté + followings()
 
         return redirect()->route('users.index');
-
     }
 
     public function unfollow(Request $request)
@@ -24,10 +23,9 @@ class FollowController extends Controller
             'following_id' => 'required|integer|exists:users,id',
         ]);
 
-        auth()->user()->follower()->detach($data['following_id']);
+        auth()->user()->followings()->detach($data['following_id']); // followings()
 
-        return redirect()->route('users.index');
-
-
+        return redirect()->route('users.followings'); // bonne redirection
     }
+
 }

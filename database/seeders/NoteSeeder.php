@@ -14,13 +14,12 @@ class NoteSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::all() -> first();
-        Note::factory()
-            -> count(10)
-            //->for($user)
-            -> create([
-                'user_id' => $user -> id,
-            ]);
-        //dd($user); // dd signifie équivalent de var dump
+        User::all()->each(function ($user) {
+            Note::factory()
+                ->count(5)
+                ->create([
+                    'user_id' => $user->id,
+                ]);
+        });
     }
 }

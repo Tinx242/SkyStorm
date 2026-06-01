@@ -14,13 +14,13 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::all() -> first();
-        Post::factory()
-            -> count(10)
-            //->for($user)
-            -> create([
-                'user_id' => $user -> id,
-            ]);
+        User::all()->each(function ($user) {
+            Post::factory()
+                ->count(5)
+                ->create([
+                    'user_id' => $user->id,
+                ]);
+        });
         //dd($user); // dd signifie équivalent de var dump
     }
 }

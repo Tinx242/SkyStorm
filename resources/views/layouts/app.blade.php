@@ -42,6 +42,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('notes.create')}}">Créer une note</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('users.index')}}">Abonnés</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('users.followings')}}">Abonnements</a>
+                        </li>
 
                     </ul>
 
