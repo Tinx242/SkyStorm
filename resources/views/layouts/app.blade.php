@@ -31,6 +31,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('posts.feed') }}">Fil d'actualité</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{route('posts.index')}}">Mes Posts</a>
                         </li>
                         <li class="nav-item">

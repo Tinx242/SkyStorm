@@ -42,6 +42,18 @@ class PostController extends Controller
         return redirect() -> route('posts.index');
     }
 
+    public function feed()
+    {
+        $followingIds = auth()->user()->followings()->pluck('users.id');
+
+        $posts = Post::whereIn('user_id', $followingIds)
+            ->with('user')
+            ->latest()
+            ->get();
+
+        return view('posts.feed', compact('posts'));
+    }
+
     /**
      * Display the specified resource.
      */

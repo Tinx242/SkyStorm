@@ -14,6 +14,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/posts/feed', [PostController::class, 'feed'])->name('posts.feed')->middleware('auth');
 Route::resource('posts',PostController::class) -> middleware('auth');
 
 Route::get('/users/followings', [UserController::class, 'followings'])->name('users.followings')->middleware('auth');
