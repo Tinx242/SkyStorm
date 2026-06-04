@@ -18,8 +18,9 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'content' => fake()->realText(),
+            'user_id'    => User::factory(),
+            'content'    => fake()->realText(),
+            'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

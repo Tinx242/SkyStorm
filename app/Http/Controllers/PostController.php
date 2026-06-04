@@ -47,8 +47,8 @@ class PostController extends Controller
         $followingIds = auth()->user()->followings()->pluck('users.id');
 
         $posts = Post::whereIn('user_id', $followingIds)
-            ->with('user')
-            ->latest()
+            ->with('user', 'likes')
+            ->latest('created_at')
             ->get();
 
         return view('posts.feed', compact('posts'));

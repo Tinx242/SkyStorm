@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +24,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'liked_id',
+        'liked_type',
+        'post_id',
     ];
 
     /**
@@ -73,6 +77,16 @@ class User extends Authenticatable
         return $this->belongsToMany(
             User::class, 'follows', 'following_id', 'follower_id'
         );
+    }
+
+    public function liking(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function liked(): MorphMany
+    {
+        return $this->morphMany(Like::class, 'liked');
     }
 
 

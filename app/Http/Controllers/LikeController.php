@@ -3,68 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
-{public function like(Request $request)
 {
-    $data = $request->validate([
-        'post_id' => 'required|integer|exists:posts,id',
-    ]);
-
-    auth()->user()->likes()->attach($data['post_id']);
-
-    return redirect()->back();
-}
-
-    public function dislike(Request $request)
+    public function like(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'post_id' => 'required|integer|exists:posts,id',
         ]);
 
-        auth()->user()->likes()->detach($data['post_id']);
+        Like::firstOrCreate([
+            'user_id' => auth()->id(),
+            'post_id' => $request->post_id,
+        ]);
 
         return redirect()->back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function dislike(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'post_id' => 'required|integer|exists:posts,id',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Like $like)
-    {
-        //
-    }
+        Like::where([
+            'user_id' => auth()->id(),
+            'post_id' => $request->post_id,
+        ])->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Like $like)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Like $like)
-    {
-        //
+        return redirect()->back();
     }
 }
