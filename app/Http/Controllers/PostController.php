@@ -54,28 +54,13 @@ class PostController extends Controller
         return view('posts.feed', compact('posts'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Post $post)
+    public function home()
     {
-        //
-    }
+        $posts = Post::with('user', 'likes')
+            ->latest('created_at')
+            ->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
+        return view('posts.home', compact('posts'));
     }
 
     /**
@@ -83,7 +68,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post -> delete();
+        return back();
+
     }
 
 }

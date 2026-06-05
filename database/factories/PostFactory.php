@@ -20,7 +20,7 @@ class PostFactory extends Factory
         return [
             'user_id'    => User::factory(),
             'content'    => fake()->realText(),
-            'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
+            'created_at' => fake()->dateTimeBetween(),
         ];
     }
 }

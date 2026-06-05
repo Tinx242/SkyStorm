@@ -14,9 +14,8 @@ class FollowController extends Controller
 
         auth()->user()->followings()->attach($data['following_id']);
 
-        return redirect()->route('users.index');
+        return back();
     }
-
     public function unfollow(Request $request)
     {
         $data = $request->validate([
@@ -25,7 +24,7 @@ class FollowController extends Controller
 
         auth()->user()->followings()->detach($data['following_id']);
 
-        return redirect()->route('users.followings');
+        return back();
     }
 
 }

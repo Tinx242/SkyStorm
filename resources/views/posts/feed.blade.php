@@ -15,6 +15,13 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <strong>{{ $post->user->name }}</strong>
+
+                                            <form action="{{ route('users.unfollow') }}" method="POST">
+                                                @csrf @method('DELETE')
+                                                <input type="hidden" name="following_id" value="{{ $post->user_id }}">
+                                                <button>Se désabonner</button>
+                                            </form>
+
                                     <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
                                 </div>
                                 <p class="card-text mb-0">{{ $post->content }}</p>

@@ -15,11 +15,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/posts/feed', [PostController::class, 'feed'])->name('posts.feed')->middleware('auth');
+Route::get('/home', [PostController::class, 'home'])->name('posts.home')->middleware('auth');
 
 Route::post('/likes', [LikeController::class, 'like'])->name('likes.store');
 Route::delete('/likes', [LikeController::class, 'dislike'])->name('likes.destroy');
 
 Route::resource('posts',PostController::class) -> middleware('auth');
+Route::delete('posts', [PostController::class,'destroy'])->name('post.destroy');
 
 Route::get('/users/followings', [UserController::class, 'followings'])->name('users.followings')->middleware('auth');
 Route::post('/users/follow', [FollowController::class, 'follow'])->name('users.follow')->middleware('auth');

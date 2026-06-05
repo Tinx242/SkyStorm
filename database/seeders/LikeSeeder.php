@@ -13,7 +13,7 @@ class LikeSeeder extends Seeder
     public function run(): void
     {
         User::all()->each(function ($user) {
-            Post::inRandomOrder()->take(10)->get()
+            Post::inRandomOrder()->take(4)->get()
                 ->each(fn($post) => Like::firstOrCreate([
                     'user_id' => $user->id,
                     'post_id' => $post->id,

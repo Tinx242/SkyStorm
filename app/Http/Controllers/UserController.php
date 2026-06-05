@@ -19,6 +19,8 @@ class UserController extends Controller
         ]);
     }
 
+
+
     public function followings()
     {
         $followings = auth()->user()->followings()->get();
