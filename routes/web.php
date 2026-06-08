@@ -22,6 +22,7 @@ Route::delete('/likes', [LikeController::class, 'dislike'])->name('likes.destroy
 
 Route::resource('posts',PostController::class) -> middleware('auth');
 Route::delete('posts', [PostController::class,'destroy'])->name('post.destroy');
+Route::get('users/profile/{user:name}', [UserController::class, 'profile'])->name('users.profile');
 
 Route::get('/users/followings', [UserController::class, 'followings'])->name('users.followings')->middleware('auth');
 Route::post('/users/follow', [FollowController::class, 'follow'])->name('users.follow')->middleware('auth');

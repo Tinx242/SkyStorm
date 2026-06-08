@@ -53,6 +53,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('users.followings')}}">Abonnements</a>
                         </li>
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.profile', Auth::user()->name) }}">Mon Profil</a>
+                            </li>
+                        @endauth
+
 
                     </ul>
 

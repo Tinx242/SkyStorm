@@ -19,7 +19,20 @@ class UserController extends Controller
         ]);
     }
 
+    public function profile(User $user)
+    {
+        $isFollowing = auth()->user()->followings->contains($user->id);
+        $isFollowingYou = $user->followings->contains(auth()->id());
 
+        $posts = $user->posts()->latest()->get();
+
+        return view('users.profile', [
+            'profileUser'    => $user,
+            'posts'          => $posts,
+            'isFollowing'    => $isFollowing,
+            'isFollowingYou' => $isFollowingYou,
+        ]);
+    }
 
     public function followings()
     {
