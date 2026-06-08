@@ -14,7 +14,12 @@
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <strong>{{ $post->user->name }}</strong>
+                                    <div>
+                                        <a class="text-sm text-gray-900 Foot-bold hover:text-blue-400"
+                                           href="{{ route('users.profile', $post->user->name) }}">
+                                            <strong>{{ $post->user->name }}</strong>
+                                        </a>
+                                    </div>
 
                                             <form action="{{ route('users.unfollow') }}" method="POST">
                                                 @csrf @method('DELETE')
