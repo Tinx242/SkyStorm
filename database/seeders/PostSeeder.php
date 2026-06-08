@@ -17,7 +17,7 @@ class PostSeeder extends Seeder
         $users = User::all();
 
         $users->each(function ($user) {
-            Post::factory()->create([
+            Post::factory()-> count(10) ->create([
                 'user_id' => $user->id
             ]);
         });
