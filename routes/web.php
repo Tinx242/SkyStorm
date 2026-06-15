@@ -37,3 +37,5 @@ Route::delete('/users/follow', [FollowController::class, 'unfollow'])->name('use
 // Resources
 Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('notes', NoteController::class);
+Route::post('/notes/{note}/to-post', [NoteController::class, 'transformToPost'])->name('notes.toPost');
+Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->name('notes.destroy');

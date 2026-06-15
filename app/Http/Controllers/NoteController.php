@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,27 @@ class NoteController extends Controller
         $note -> save();
 
         return redirect() -> route('notes.index');
+    }
+
+    public function transformToPost(Note $note)
+    {
+        $post = new Post;
+        $post->user_id = $note->user_id;
+        $post->content = $note->content;
+        $post->save();
+
+        $note->delete();
+
+        return redirect()->route('posts.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Note $note)
+    {
+        $note->delete();
+        return back();
     }
 
 }
