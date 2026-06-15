@@ -10,6 +10,16 @@
                         <div>
                             <h3>{{ $profileUser->name }}</h3>
                             <small class="text-muted">Membre depuis {{ $profileUser->created_at->diffForHumans() }}</small>
+
+                            {{-- Compteurs abonnés / abonnements --}}
+                            <div class="mt-2">
+                                <span class="badge bg-secondary me-2">
+                                    {{ $profileUser->followers->count() }} abonné(s)
+                                </span>
+                                <span class="badge bg-secondary">
+                                    {{ $profileUser->followings->count() }} abonnement(s)
+                                </span>
+                            </div>
                         </div>
 
                         @if ($profileUser->id !== auth()->id())
@@ -27,6 +37,48 @@
                                 </form>
                             @endif
                         @endif
+                    </div>
+                </div>
+
+                <div class="row">
+                    {{-- Abonnés (followers) --}}
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Abonnés ({{ $profileUser->followers->count() }})
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                @forelse ($profileUser->followers as $follower)
+                                    <li class="list-group-item">
+                                        <a href="{{ route('users.profile', $follower->name) }}">
+                                            {{ $follower->name }}
+                                        </a>
+                                    </li>
+                                @empty
+                                    <li class="list-group-item text-muted">Aucun abonné.</li>
+                                @endforelse
+                            </ul>
+                        </div>
+                    </div>
+
+                    {{-- Abonnements (followings) --}}
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Abonnements ({{ $profileUser->followings->count() }})
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                @forelse ($profileUser->followings as $following)
+                                    <li class="list-group-item">
+                                        <a href="{{ route('users.profile', $following->name) }}">
+                                            {{ $following->name }}
+                                        </a>
+                                    </li>
+                                @empty
+                                    <li class="list-group-item text-muted">Aucun abonnement.</li>
+                                @endforelse
+                            </ul>
+                        </div>
                     </div>
                 </div>
 

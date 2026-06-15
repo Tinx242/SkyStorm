@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -24,9 +23,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'liked_id',
-        'liked_type',
-        'post_id',
     ];
 
     /**
@@ -51,8 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
     /**
-     * Get the posts for the blog post.
+     * Les posts de l'utilisateur.
      */
     public function posts(): HasMany
     {
@@ -60,7 +57,7 @@ class User extends Authenticatable
     }
 
     /**
-     * The roles that belong to the user.
+     * Les utilisateurs que cet utilisateur suit (ses abonnements).
      */
     public function followings(): BelongsToMany
     {
@@ -70,7 +67,7 @@ class User extends Authenticatable
     }
 
     /**
-     * The users that belong to the role.
+     * Les utilisateurs qui suivent cet utilisateur (ses abonnés).
      */
     public function followers(): BelongsToMany
     {
@@ -79,16 +76,19 @@ class User extends Authenticatable
         );
     }
 
+    /**
+     * Les likes émis par l'utilisateur.
+     */
     public function liking(): HasMany
     {
         return $this->hasMany(Like::class);
     }
 
+    /**
+     * Les likes reçus par l'utilisateur (relation polymorphe).
+     */
     public function liked(): MorphMany
     {
         return $this->morphMany(Like::class, 'liked');
     }
-
-
-
 }
