@@ -1,0 +1,22 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="1200" height="300" viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .sky {
+      fill: #1F1F1F;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 180px;
+    }
+    .storm {
+      fill: #4A86E8;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 180px;
+    }
+  </style>
+
+  <text x="50" y="210">
+    <tspan class="sky">Sky</tspan>
+    <tspan class="storm">Storm</tspan>
+  </text>
+</svg>
