@@ -14,8 +14,8 @@ class UserController extends Controller
     {
         return view('users.index', [
             'users' => User::orderBy('name')
-                            ->where('id', '!=', auth()->user()->id)
-                            ->get()
+                ->where('id', '!=', auth()->user()->id)
+                ->get()
         ]);
     }
 
@@ -38,6 +38,12 @@ class UserController extends Controller
     {
         $followings = auth()->user()->followings()->get();
         return view('users.followings', compact('followings'));
+    }
+
+    public function followers()
+    {
+        $followers = auth()->user()->followers()->get();
+        return view('users.followers', compact('followers'));
     }
 
     /**

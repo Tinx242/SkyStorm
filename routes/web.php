@@ -30,6 +30,7 @@ Route::resource('posts', PostController::class)->middleware('auth');
 // Profils et abonnements
 // A declarer AVANT la resource users pour ne pas etre masques par users/{user}
 Route::get('users/profile/{user:name}', [UserController::class, 'profile'])->name('users.profile')->middleware('auth');
+Route::get('/abonnes', [UserController::class, 'followers'])->name('users.followers');
 Route::get('/users/followings', [UserController::class, 'followings'])->name('users.followings')->middleware('auth');
 Route::post('/users/follow', [FollowController::class, 'follow'])->name('users.follow')->middleware('auth');
 Route::delete('/users/follow', [FollowController::class, 'unfollow'])->name('users.unfollow')->middleware('auth');
