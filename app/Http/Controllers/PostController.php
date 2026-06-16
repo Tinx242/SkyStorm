@@ -13,10 +13,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //$posts = Post::all();
-
-        return view('posts.index',[
-            'posts' => Post::where('user_id', auth() -> user()->id)->get()
+        return view('posts.index', [
+            'posts' => Post::where('user_id', auth()->user()->id)
+                ->latest('created_at')
+                ->get()
         ]);
     }
 

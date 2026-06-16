@@ -7,7 +7,10 @@
             <div class="col-md-8">
                 @foreach ($posts as $post)
                     <div class="card mb-3">
-                        <div class="card-header">{{ __('Mes Posts') }}</div>
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>{{ __('Mes Posts') }}</span>
+                            <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+                        </div>
                         <div class="card-body">
                             {{ $post->content }}
                         </div>
