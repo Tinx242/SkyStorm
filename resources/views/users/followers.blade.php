@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+{{-- Liste des personnes qui suivent l'utilisateur connecté --}}
 @section('content')
     <h4 class="mb-4 fw-bold">Mes abonnés</h4>
 
@@ -15,6 +16,7 @@
                             <i class="bi bi-person-circle"></i> {{ $user->name }}
                         </a>
 
+                        {{-- Suivre en retour, ou se désabonner si on le suit déjà --}}
                         @if ($user->id !== auth()->id())
                             @if (auth()->user()->followings->contains($user->id))
                                 <form action="{{ route('users.unfollow') }}" method="POST">
