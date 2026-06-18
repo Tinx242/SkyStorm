@@ -6,3 +6,139 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// Hauteur de la navbar — ajuster si nécessaire
+$navbar-height: 110px;
+
+// ============================================
+// NAVBAR
+// ============================================
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+// Permet de centrer les onglets par rapport à toute la navbar
+.navbar .container {
+    position: relative;
+}
+
+// ============================================
+// ONGLETS "POUR VOUS / ABONNEMENTS"
+// ============================================
+
+.nav-tabs-x {
+    // Centrage absolu par rapport au container
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 0;
+
+    .nav-link-x {
+        display: block;
+        padding: 18px 40px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #555;
+        text-decoration: none;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s;
+
+        &:hover {
+            color: #000;
+            background-color: #f5f5f5;
+        }
+
+        // Onglet actif : texte noir + barre bleue
+        &.active {
+            color: #000;
+            border-bottom: 3px solid #1d9bf0;
+        }
+    }
+}
+
+// ============================================
+// SIDEBARS
+// ============================================
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - #{$navbar-height});
+    position: sticky;
+    top: $navbar-height;
+    overflow-y: auto;
+    scrollbar-width: none; // cache la scrollbar
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+// Pousse le bloc profil/logout tout en bas
+.sidebar-bottom {
+    margin-top: auto;
+    padding-bottom: 12px;
+}
+
+// Liens de navigation dans la sidebar
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: #333;
+    font-weight: 500;
+    transition: background 0.15s;
+
+    &:hover {
+        background-color: #f0f0f0;
+        color: #000;
+    }
+
+    i {
+        font-size: 1.2rem;
+    }
+}
+
+// Bloc profil + bouton logout en bas de sidebar
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+
+    .profile-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+    }
+}
+
+// Nom d'utilisateur cliquable dans les suggestions
+.suggestion-link {
+    transition: color 0.15s ease;
+
+    &:hover {
+        color: #1d9bf0;
+    }
+}
+
+// ============================================
+// GLOBAL
+// ============================================
+
+// Evite le saut de page quand la scrollbar apparaît/disparaît
+body {
+    overflow-y: scroll;
+}
+
+main {
+    padding-top: 16px;
+}
